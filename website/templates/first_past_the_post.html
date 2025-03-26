@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Vote (First Past the Post)</h2>
+    <form method="POST" action="{{ url_for('views.first_past_the_post_vote', election_id=current_election_id) }}">
+        <div class="form-group">
+            <label>Select one candidate:</label>
+            <br>
+            {% for candidate in candidates %}
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="candidate_id" value="{{ candidate.candidate_id }}" id="candidate{{ candidate.candidate_id }}">
+                    <label class="form-check-label" for="candidate{{ candidate.candidate_id }}">{{ candidate.candidate_name }}</label>
+                </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary">Vote</button>
+    </form>
+</div>
+{% endblock %}
+

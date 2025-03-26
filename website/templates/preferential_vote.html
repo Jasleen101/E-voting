@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Vote (Preferential Vote)</h2>
+    <form method="POST" action="{{ url_for('views.preferential_vote') }}">
+        <div class="form-group" id="candidate-rankings">
+            <label>Rank Candidates in Order of Preference:</label>
+            <br>
+            {% for candidate in candidates %}
+                <div class="candidate-ranking">
+                    <label>{{ candidate.candidate_name }}</label>
+                    <select name="candidate_rank_{{ candidate.candidate_id }}">
+                        {% for rank in range(1, candidates|length + 1) %}
+                            <option value="{{ rank }}">{{ rank }}{% if rank == 1 %}st{% elif rank == 2 %}nd{% elif rank == 3 %}rd{% else %}th{% endif %} Preference</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary">Vote</button>
+    </form>
+</div>
+{% endblock %}

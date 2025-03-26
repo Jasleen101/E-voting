@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Submit Nomination
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Submit Nomination</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="election">Select Election:</label>
+            <select id="election" name="election" class="form-control">
+                {% for election in running_elections %}
+                    <option value="{{ election.id }}">{{ election.election_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="candidate_name">Candidate Name:</label>
+            <input type="text" id="candidate_name" name="candidate_name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="candidate_party">Candidate Party:</label>
+            <input type="text" id="candidate_party" name="candidate_party" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="constituency">Constituency:</label>
+            <input type="text" id="constituency" name="constituency" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Nomination</button>
+    </form>
+</div>
+{% endblock %}
+
+
+

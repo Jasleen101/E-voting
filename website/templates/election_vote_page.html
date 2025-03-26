@@ -1,0 +1,59 @@
+<!--can vote for an candidate for a specific election-->
+
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Election Vote</h2>
+    <form method="POST" action="{{ url_for('views.election_vote') }}">
+        <div class="form-group">
+            <label>Select Election:</label>
+            <select name="election_id" class="form-control">
+                {% for election in elections %}
+                    <option value="{{ election.id }}" data-voting-strategy="{{ election.voting_strategy }}">{{ election.election_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Proceed to Vote</button>
+    </form>
+
+    <!-- Section for preferential voting -->
+    <div id="preferential-vote" style="display: none;">
+        {% include 'preferential_vote.html' %}
+    </div>
+
+    <!-- Section for single transferable voting -->
+    <div id="single-transferable-vote" style="display: none;">
+        {% include 'single_transferable_vote.html' %}
+    </div>
+
+    <!-- Section for first past the post voting -->
+    <div id="first-past-the-post-vote" style="display: none;">
+        {% include 'first_past_the_post.html' %}
+    </div>
+</div>
+
+<script>
+    // JavaScript to show/hide voting sections based on the selected election's voting strategy
+    document.addEventListener('DOMContentLoaded', function () {
+        var selectElection = document.querySelector('select[name="election_id"]');
+        selectElection.addEventListener('change', function () {
+            var selectedOption = selectElection.options[selectElection.selectedIndex];
+            var votingStrategy = selectedOption.getAttribute('data-voting-strategy');
+
+            // Hide all voting sections
+            document.getElementById('preferential-vote').style.display = 'none';
+            document.getElementById('single-transferable-vote').style.display = 'none';
+            document.getElementById('first-past-the-post-vote').style.display = 'none';
+
+            // Show the relevant voting section based on the selected election's voting strategy
+            if (votingStrategy === 'preferential') {
+                document.getElementById('preferential-vote').style.display = 'block';
+            } else if (votingStrategy === 'single_transferable') {
+                document.getElementById('single-transferable-vote').style.display = 'block';
+            } else if (votingStrategy === 'first_past_the_post') {
+                document.getElementById('first-past-the-post-vote').style.display = 'block';
+            }
+        });
+    });
+</script>
+{% endblock %}

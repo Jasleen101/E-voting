@@ -1,0 +1,27 @@
+<!-- View users list of users in the db -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>List of Users</h1>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Email</th>
+                <th>User Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.user_role }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

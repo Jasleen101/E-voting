@@ -1,0 +1,23 @@
+<!--candidate_home_page-->
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Hi {{ user.first_name }}, what would you like to do?</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <a href="{{ url_for('views.view_results') }}" class="btn btn-primary btn-block">View Election Results</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ url_for('views.elections_list') }}" class="btn btn-primary btn-block">List Elections</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ url_for('views.submit_nomination') }}" class="btn btn-primary btn-block">Submit Nomination</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ url_for('views.cancel_nomination') }}" class="btn btn-primary btn-block">Cancel Nomination</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+<!--Choose which election to vote for-->
+
+{% extends 'base.html' %}
+
+{% block title %}
+    Vote in Elections
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Vote in Elections</h2>
+    <p>Choose the elections you want to vote in:</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Election Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for election in elections %}
+                <tr>
+                    <td>{{ election.election_name }}</td>
+                    <td>{{ election.election_start_date }}</td>
+                    <td>{{ election.election_end_date }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('views.election_vote') }}">
+                            <input type="hidden" name="election_id" value="{{ election.id }}">
+                            <button type="submit" class="btn btn-success">Vote</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

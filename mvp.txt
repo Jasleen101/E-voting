@@ -1,0 +1,19 @@
+Website pages
+
+--Universal--
+login.html
+sign_up_role.html
+admin_sign_up.html
+voter_sign_up.html
+candidate_sign_up.html
+view_results.html
+view_elections.html
+
+--Admin--
+admin_home_page
+
+--Candidate--
+candidate_home_page
+
+--Voter--
+voter_home_page

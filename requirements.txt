@@ -1,0 +1,10 @@
+"""
+flask 
+flask-login
+Flask-SQLAlchemy
+sqlalchemy
+db-sqlite3
+pandas
+elasticsearchpip
+Babel
+"""

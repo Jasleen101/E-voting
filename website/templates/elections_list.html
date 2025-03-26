@@ -1,0 +1,36 @@
+<!-- elections_list.html -->
+
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Elections List</h2>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Election Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Winner</th>
+                        <th>Voting Strategy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for election in elections %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ election.election_name }}</td>
+                        <td>{{ election.election_start_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                        <td>{{ election.election_end_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                        <td>{{ election.winner }}</td>
+                        <td>{{ election.voting_strategy }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Cancel Nomination
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Cancel Nomination</h2>
+    
+    <!-- Display elections user is part of -->
+    <h3>Your Nominated Elections:</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Election Name</th>
+                <th>Constituency</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for nomination in current_user_candidate.nominations %}
+                <tr>
+                    <td>{{ nomination.election.election_name }}</td>
+                    <td>{{ nomination.constitute }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    {% if nominations %}
+        <h3>Cancel Nomination</h3>
+        <ul>
+            {% for nomination in nominations %}
+                <li>
+                    Election: <strong>{{ nomination.election.election_name }}</strong> 
+                    <form method="POST" style="display:inline;">
+                        <input type="hidden" name="election_id" value="{{ nomination.election.id }}">
+                        <button type="submit" class="btn btn-danger">Cancel Nomination</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You are not nominated for the selected election.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
